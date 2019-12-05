@@ -1,10 +1,11 @@
 import pymongo
+import os
 
 
 class Database(object):
 
     #URI = "mongodb://127.0.0.1:27017"
-    URI = "mongodb+srv://IcaroIA:JY5W9K3PpwM12Rj7@quiniela-nxvjx.gcp.mongodb.net/test?retryWrites=true&w=majority"
+    URI = "mongodb+srv://IcaroIA:{}@quiniela-nxvjx.gcp.mongodb.net/test?retryWrites=true&w=majority".format(os.environ('MONGO'))
 
     DATABASE = None
 
