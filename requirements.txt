@@ -1,0 +1,10 @@
+requests
+flask==1.1.1
+pymongo==3.8.0
+beautifulsoup4==4.4.0
+xmltodict
+apscheduler
+flask-moment
+openpyxl
+dnspython
+dnspython3

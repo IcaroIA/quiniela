@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <meta http-equiv="refresh" content="90">
+    <h1 class="row mt-1 justify-content-center">Semana {{ sem }} de la temporada &nbsp;<a class="alert-link" href="/{{player.name}}/{{temporada}}"> {{ temporada }}</a></h1>
+
+        <div class="container">
+            <div class="row" >
+                <div class="col-9">
+                {% for game in games %}
+                    <div class="row border-bottom">
+                        <img src="/static/img/{{ game['Visitor'] }}.svg" alt="..." class="col-1">
+                        <small class="col-2 h-auto text-center justify-content-center align-self-center">
+                            {% if game.Visitor == game.p %}
+                            <i class="fas fa-football-ball text-warning"></i> {{ game.Visitor }} {{ game.Visitornn }}
+                            {% else %}
+                            {{ game['Visitor'] }} {{ game.Visitornn }}
+                            {% endif %}
+                        </small>
+                        {% if game['Vscore']|int > game['Hscore']|int %}
+                            <p class="col-1 mt-3 text-center font-weight-bold text-white bg-success"> {{ game['Vscore'] }} </p>
+                        {% else %}
+                            <p class="col-1 mt-3 text-center text-secondary"> {{ game['Vscore'] }} </p>
+                        {% endif %}
+                        <p class="col-1 mt-3 text-center text-muted"> @ </p>
+                        {% if game['Hscore']|int > game['Vscore']|int %}
+                            <P class="col-1 mt-3 text-center font-weight-bold text-white bg-success"> {{ game['Hscore'] }} </P>
+                        {% else %}
+                            <P class="col-1 mt-3 text-center text-secondary"> {{ game['Hscore'] }} </P>
+                        {% endif %}
+                        <img src="/static/img/{{ game['Home'] }}.svg" alt="..." class="col-1">
+                        <Small class="col-2 h-auto text-center justify-content-center align-self-center">
+                            {% if game.Home == game.p %}
+                            <i class="fas fa-football-ball text-warning"></i> {{ game.Home }} {{ game.Homenn }}
+                            {% else %}
+                            {{ game['Home'] }} {{ game['Homenn'] }}
+                            {% endif %}
+                        </Small>
+                        {% if game.quarter == 'F' or game.quarter == 'FO' %}
+                        <small class="col-3 h-auto text-center justify-content-center align-self-center"> Final </small>
+                        {% elif game.quarter == 'P' %}
+                        <small class="col-3 h-auto text-center justify-content-center align-self-center">{{ game.Day }} {{ game['Time'] }}</small>
+                        {% else %}
+                        <small class="col-3 h-auto text-center justify-content-center align-self-center">
+                            {% if game.quarter == '1'%}
+                            {{ game.down }} and {{ game.togo }} on {{ game.yl }} <br> {{ game.k }} - {{ game.quarter }}st quarter
+                            {% elif game.quarter == '2'%}
+                            {{ game.down }} and {{ game.togo }} on {{ game.yl }} <br> {{ game.k }} - {{ game.quarter }}nd quarter
+                            {% elif game.quarter == '3'%}
+                            {{ game.down }} and {{ game.togo }} on {{ game.yl }} <br> {{ game.k }} - {{ game.quarter }}rd quarter
+                            {% else %}
+                            {{ game.down }} and {{ game.togo }} on {{ game.yl }} <br> {{ game.k }} - {{ game.quarter }}th quarter
+                            {% endif %}
+                        </small>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+                </div>
+                <div class="col-3 border-left">
+                {% for juego in juegos %}
+                    <div class="row border-bottom">
+                {% if juego.points > 0 %}
+                <p class="col-2 mt-3 text-center text-success"> <i class="far fa-check-circle"></i></p>
+                {% else %}
+                <p class="col-2 mt-3 text-center text-danger"> <i class="far fa-times-circle"></i></p>
+                {% endif %}
+                <img src="/static/img/{{ juego.result }}.svg" alt="..." class="col-2">
+                <p class="col-4 mt-3 text-center text-muted"> {{ juego.result }} </p>
+                <small class="col-4 mt-3 text-center text-muted"> {{ juego.points }} pts.</small>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

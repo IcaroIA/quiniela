@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+
+<header>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Play" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cabin+Sketch" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a08b8b15fa.js" crossorigin="anonymous"></script>
+
+    <style>
+        body {
+            font-family: 'Play', sans-serif;
+            background-color: #F7F7F7;
+        }
+    </style>
+
+</header>
+
+<head>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand mb-0 h1 font-weight-bold" href="/login/{{ name }}">Q-NFL</a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/login/{{ name }}">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/{{ name }}/pagos">Pagos</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Temporadas
+                    </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    {% for i in range(2012,2020) %}
+                        <a class="dropdown-item" href="{{ url_for('week', name = name, season = i ) }}">Temporada {{ i }}</a>
+                    {% endfor %}
+                </div>
+                </li>
+            </ul>
+            <ul class="navbar-nav col">
+                <li class="nav-item">
+                    <a class="nav-link float-right" href="/logout"><span class="fa fa-sign-out"></span>Log out</a>
+                </li>
+
+            </ul>
+            <ul class="navbar-nav">
+
+            </ul>
+        </div>
+        </ul>
+        <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link float-right" href="/login/{{ name }}">{{ name }}</a></li>
+        </ul>
+    </nav>
+     <nav class="navbar" style="background-color: #4D9C2D">
+
+    </nav>
+
+</head>
+
+<body>
+    <div class="container-fluid">
+
+        {% block content %}
+
+        {% endblock %}
+
+    </div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/af.js"></script>
+
+</body>
+<footer class="mt-2"> <h5 class="text-center bold" style="font-family: 'Cabin Sketch', cursive; font-size: 14px;"> Part of the galactic empire <i class="fab fa-empire"></i></h5> </footer>

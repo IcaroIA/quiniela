@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h1>Semana {{ sem }} de la temporada <a class="alert-link" href="/{{name}}/{{temporada}}">{{ temporada }}</a></h1>
+    <div class="row">
+        <form class="form-inline align-middle" action="/{{name}}/{{temporada}}/{{sem}}/played" method="post">
+             <table class="table table-sm table-striped">
+                  <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col-2">Visitante</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col-2">Local</th>
+                        <th scope="col text-center">Horario</th>
+                        <th scope="col"></th>
+                        <th scope="col">Pick</th>
+                        <th scope="col">Dif.</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+
+        {% for game in games%}
+                <tr>
+                    <div class="form-group col-12 my-n1">
+                        <th scope="row"><img src="/static/img/{{ game['Visitor'] }}.svg" alt="{{ game['Visitor'] }}" class="col-1" style="max-width: 60px; height: auto"></th>
+                        <td >{{ game['Visitor'] }} {{ game['Visitornn'] }}</td>
+                        <td> @ </td>
+                        <td><img src="/static/img/{{ game['Home'] }}.svg" alt="{{ game['Home'] }}" class="col-1" style="max-width: 60px; height: auto"></td>
+                        <td>{{ game['Home'] }} {{ game['Homenn'] }}</td>
+                        <td><small class="col-1">{{ game['Day'] }} {{ game['Time'] }}</small></td>
+                        <td><input type="text" class="form-control sr-only" id="gameid" name="gameid" value="{{game['gameid']}}"></td>
+                        <td>
+                            <select id="inlineFormCustomSelect" class="form-control form-control-sm" name="winner" required>
+                                <option value=""> &nbsp;&nbsp;&nbsp;&nbsp; Ganador...&nbsp;&nbsp;&nbsp;&nbsp;</option>
+                                <option value="{{game['Home']}}">{{game['Home']}}</option>
+                                <option value="{{game['Visitor']}}">{{game['Visitor']}}</option>
+                            </select>
+                        </td>
+                        <td><input type="number" class="form-control form-control-sm" id="diff" name="diff" required></td>
+                    </div>
+                </tr>
+        {% endfor %}
+
+          </tbody>
+             </table>
+            <div class="col-12">
+              <button type="submit" class="btn btn-success btn-lg btn-block my-3">Mandar semana {{ sem }}</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+<h1>Semana {{ sem }} de la temporada <a class="alert-link" href="/{{ name }}/{{ temporada }}">{{ temporada }}</a> - <small>Total de la semana: {{ resultado }} </small> </h1>
+    <div class="row">
+        <div class="col-9">
+            <table class="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">Día</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col" class="text-center">Juego</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col" class="text-center">Pick</th>
+                        <th scope="col" class="text-center">Diff</th>
+                        <th scope="col" class="text-center">Res.</th>
+                        <th scope="col" class="text-center">Pts.</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for game in games%}
+                    <tr>
+                        <th scope="row">{{game_day(game.gameid)}}</th>
+                        <td class="text-center"> <img src="/static/img/{{game_v(game['gameid'])}}.svg" alt="{{game_v(game['gameid'])}}" class="col-1" style="max-width: 50px; height: auto"></td>
+                        <td class="text-center"><small>{{game_v(game.gameid)}}</small></td>
+                        <td class="text-center">{{game_v_score(game.gameid)}}</td>
+                        <td class="text-center">@</td>
+                        <td class="text-center">{{game_h_score(game.gameid)}}</td>
+                        <td class="text-center"><small>{{game_h(game.gameid)}}</small></td>
+                        <td class="text-center"> <img src="/static/img/{{game_h(game['gameid'])}}.svg" alt="{{game_h(game['gameid'])}}" class="col-1" style="max-width: 50px; height: auto"></td>
+                        <td class="text-center">
+                            <img src="/static/img/{{game['result']}}.svg" alt="{{game['result']}}" class="col-1" style="max-width: 45px; height: auto">
+                            <small>{{game.result}}</small>
+                        </td>
+                        <td class="text-center">{{game.score}}</td>
+                        {% if game_winner(game.gameid) == game.result  %}
+                            <td class="text-center bg-success"><span class="fas fa-check-circle"></span></td>
+                            <td class="text-center"> {{ game.points }}</td>
+                        {% else %}
+                            <td class="text-center bg-danger"><span class="fas fa-times-circle"></span></td>
+                            <td class="text-center">0</td>
+                        {% endif  %}
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="col-3">
+            <table class="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col" class="">No.</th>
+                        <th scope="col" class="col text-center">Player</th>
+                        <th scope="col" class="text-center">Score</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for i in weekly%}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td class="text-center"><small>{{ player_name(i.player) }}</small></td>
+                    <td class="text-center">{{ i.total }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

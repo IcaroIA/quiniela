@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block content %}
+<meta http-equiv="refresh" content="90">
+<div class="container">
+    <div class="row align-items-center mt-2">
+        <h4 class="col">Semana {{ week }} : {{ resultado.total }} pts.</h4>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row shadow-lg rounded">
+        <h6 class="d-inline col-md-8">Total temporada:</h6>
+        <h6 class="d-inline col-md-4">Total semanal:</h6>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+             <table class="table">
+               <!-- <thead class="thead-light">
+                    <tr>
+                        <th scope="col" class="">No.</th>
+                        <th scope="col" class="col text-center">Player</th>
+                        <th scope="col" class="text-center">Score</th>
+                    </tr>
+                </thead>-->
+                 <tbody>
+                 {% for sc in totals%}
+                    {% if loop.index == 1 %}
+                    <tr class="">
+                        <td>{{ loop.index }}</td>
+                        <td class="text-center"><small>{{ player_name(sc.player) }}</small></td>
+                        <td class="text-center">{{ sc.total }}</td>
+                        <td class="text-center text-muted"><small>-</small></td>
+                        <td class="text-center text-muted"><small>-</small></td>
+                    </tr>
+                    {% elif loop.index < 21%}
+                    <tr class="">
+                        <td>{{ loop.index }}</td>
+                        <td class="text-center"><small>{{ player_name(sc.player) }}</small></td>
+                        <td class="text-center">{{ sc.total }}</td>
+                        <td class="text-center text-muted"><small>{{ maxi - sc.total|int }}</small></td>
+                        <td class="text-center text-muted"><small>-</small></td>
+                    </tr>
+                    {% else %}
+                    <tr class="">
+                        <td>{{ loop.index }}</td>
+                        <td class="text-center"><small>{{ player_name(sc.player) }}</small></td>
+                        <td class="text-center">{{ sc.total }}</td>
+                        <td class="text-center text-muted"><small>{{ maxi - sc.total|int }}</small></td>
+                        <td class="text-center text-muted"><small>{{ max20 - sc.total|int }}</small></td>
+                    </tr>
+                    {% endif %}
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-4">
+             <table class="table">
+                <!--<thead class="thead-light">
+                    <tr>
+                        <th scope="col" class="">No.</th>
+                        <th scope="col" class="col text-center">Player</th>
+                        <th scope="col" class="text-center">Score</th>
+                    </tr>
+                </thead>-->
+                <tbody>
+                {% for sc in week_scores%}
+                <tr class="">
+                    <td>{{ loop.index }}</td>
+                    <td class="text-center"><small>{{ player_name(sc.player) }}</small></td>
+                    <td class="text-center">{{ sc.total }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

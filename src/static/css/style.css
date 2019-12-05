@@ -1,0 +1,16 @@
+body {
+    background: url(../img/FtblField.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+}
+
+.row {
+    height: 470px;
+}
+
+.jumbotron {
+    background: none;
+}

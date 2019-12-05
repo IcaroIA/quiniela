@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+<h1>Semana {{ sem }} de la temporada <a class="alert-link" href="/{{ name }}/{{ temporada }}">{{ temporada }}</a> - <small>Total de la semana: {{ score }} </small> </h1>
+
+    <table class="table">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">Día</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col" class="text-center">Juego</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col" class="text-center">Pick</th>
+                <th scope="col" class="text-center">Diff</th>
+                <th scope="col" class="text-center">Res.</th>
+                <th scope="col" class="text-center">Pts.</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for game in games%}
+            <tr>
+                <th scope="row">{{game_day(game['gameid'])}}</th>
+                <td class="text-center"> <img src="/static/img/{{game_v(game['gameid'])}}.svg" alt="{{game_v(game['gameid'])}}" class="col-1" style="max-width: 55px; height: auto"></td>
+                <td class="text-center">{{game_v(game['gameid'])}} {{game_visit(game['gameid'])}} </td>
+                <td class="text-center">@</td>
+                <td class="text-center"> <img src="/static/img/{{game_h(game['gameid'])}}.svg" alt="{{game_h(game['gameid'])}}" class="col-1" style="max-width: 55px; height: auto"></td>
+                <td class="text-center">{{game_h(game['gameid'])}} {{game_home(game['gameid'])}}</td>
+
+                <td class="text-center">
+                    <img src="/static/img/{{game['result']}}.svg" alt="{{game['result']}}" class="col-1" style="max-width: 55px; height: auto">
+                    {{game['result']}}
+                </td>
+                <td class="text-center">{{game['score']}}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
