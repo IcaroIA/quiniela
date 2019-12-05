@@ -5,7 +5,8 @@ import os
 class Database(object):
 
     #URI = "mongodb://127.0.0.1:27017"
-    URI = "mongodb+srv://IcaroIA:{}@quiniela-nxvjx.gcp.mongodb.net/test?retryWrites=true&w=majority".format(os.environ('MONGO'))
+    #URI = "mongodb+srv://IcaroIA:{}@quiniela-nxvjx.gcp.mongodb.net/test?retryWrites=true&w=majority".format(os.environ('MONGO'))
+    URI = os.environ.get("MONGOLAB_URI")
 
     DATABASE = None
 
