@@ -1,3 +1,4 @@
+werkzeug
 requests
 flask==1.1.1
 pymongo==3.8.0
@@ -8,3 +9,4 @@ flask-moment
 openpyxl
 dnspython
 dnspython3
+uwsgi

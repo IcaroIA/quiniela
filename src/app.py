@@ -7,6 +7,7 @@ from src.models.user import User
 from src.common.utils import season, get_week, find_users, update_live_score, update_results, update_totals
 from src.models.quiniela import Quiniela, Resultados, Anual
 from src.models.calendar import Calendar
+import os
 
 
 app = Flask(__name__)
@@ -23,7 +24,7 @@ def landing():
     return render_template('home.html')
 
 
-@app.route('/register', methods=['GET','POST'])
+@app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'GET':
         return render_template('register.html')
