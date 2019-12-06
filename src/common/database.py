@@ -5,15 +5,15 @@ import os
 class Database(object):
 
     #URI = "mongodb://127.0.0.1:27017"
-    #URI = "mongodb+srv://IcaroIA:{}@quiniela-nxvjx.gcp.mongodb.net/test?retryWrites=true&w=majority".format(os.environ.get('MONGO'))
-    URI = os.environ.get("MONGOLAB_URI")
+    #URI = "mongodb+srv://IcaroIA:7OXdb9HaD0HNiO7E@quiniela-nxvjx.gcp.mongodb.net/test?retryWrites=true&w=majority"
+    URI = os.environ.get("MONGOATLAS_URI")
 
     DATABASE = None
 
     @staticmethod
     def initialize():
         client = pymongo.MongoClient(Database.URI)
-        Database.DATABASE = client['heroku_m3kb061z']
+        Database.DATABASE = client['qnfl']
 
     @staticmethod
     def insert(collection, data):
